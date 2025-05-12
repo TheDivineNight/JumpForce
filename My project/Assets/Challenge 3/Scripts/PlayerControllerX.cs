@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerControllerX : MonoBehaviour
 {
     public bool gameOver;
-
+    public float Rooflimit = 12.5f;
+    public float floorlimit = 1.0f;
     public float floatForce;
     private float gravityModifier = 1.5f;
     private Rigidbody playerRb;
@@ -33,6 +34,16 @@ public class PlayerControllerX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+        if(transform.position.y > Rooflimit)
+        {
+            transform.position = new Vector3(transform.position.x, Rooflimit, transform.position.z);
+            playerRb.velocity = Vector3.zero;
+        }
+        
+        
+        
+        
         // While space is pressed and player is low enough, float up
         if (Input.GetKey(KeyCode.Space) && !gameOver)
         {
